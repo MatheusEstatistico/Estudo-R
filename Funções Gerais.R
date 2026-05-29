@@ -1,4 +1,5 @@
 library(tidyverse)
+library(vcd)
 library(flextable)
 set_flextable_defaults( 
   font.family = "Calibri (Corpo)", font.size = 10, 
@@ -105,3 +106,52 @@ cruzamentos = function(Var1, Var2, nomev1, nomev2, data, n_cruzamento = "") {
 }
 
 # Função tabela de associações (Teste Qui-Quadrado)
+associacao = function(Var1, Var2, nomev1, nomev2, alpha = 0.05, n_qq = NULL) {
+  stopifnot(
+    "Var1 e Var2 devem ter o mesmo comprimento" = length(Var1) == length(Var2),
+    "Var1 não pode ser NULL" = !is.null(Var1),
+    "Var2 não pode ser NULL" = !is.null(Var2)
+  )
+
+  aux = data.frame(Var1 = Var1, Var2 = Var2)
+  tabela = table(aux)
+
+  teste_qui  = chisq.test(tabela, simulate.p.value = TRUE)
+  stats_assoc = assocstats(tabela) 
+
+  cramer_fmt = if (teste_qui$p.value > alpha) {
+    "-"
+  } else {
+    formatC(stats_assoc$cramer, digits = 4, format = "f")
+  }
+
+  resultado = data.frame(
+    "Estatística de Teste" = teste_qui$statistic,
+    "P-Valor"              = teste_qui$p.value,
+    "V de Cramér"          = cramer_fmt,
+    check.names = FALSE
+  )
+
+  caption_label = if (!is.null(n_qq)) {
+    paste("Tabela", n_qq, "de Associação")
+  } else {
+    "Tabela de Associação"
+  }
+
+  ft = resultado %>%
+    flextable() %>%
+    set_table_properties(layout = "autofit", width = 0) %>%
+    set_caption(
+      as_paragraph(
+        as_chunk(caption_label,
+                 props = fp_text_default(color = "black", bold = TRUE, font.size = 10)),
+        as_chunk("\n"),
+        as_chunk(paste("Associação entre", nomev1, "e", nomev2),
+                 props = fp_text_default(color = "black", italic = TRUE, font.size = 9))
+      )
+    ) %>%
+    align(align = "center", part = "all")
+
+  return(ft)
+}
+
