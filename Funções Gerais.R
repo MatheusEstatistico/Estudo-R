@@ -2,7 +2,6 @@ library(tidyverse)
 library(readxl)   # substitui xlsx (mais leve, sem dependência de Java)
 library(vcd)
 library(officer)  # necessário para fp_text_default() nas captions
-
 library(flextable)
 set_flextable_defaults(
   font.family  = "Calibri (Corpo)",
@@ -10,11 +9,11 @@ set_flextable_defaults(
   border.color = "black",
   big.mark     = "")
 
+# Variáveis globais 
 n_tabela     <- 0
 n_graf       <- 0
 n_cruzamento <- 0
 n_qq         <- 0
-
 
 # Auxiliar: monta uma flextable com caption padrão 
 .ft_caption <- function(ft, titulo, subtitulo = NULL, bold = TRUE) {
@@ -51,7 +50,6 @@ n_qq         <- 0
     slice(c(order(-Freq[seq_len(n() - 1)]), n()))
 }
 
-
 # Função Tabela de Freq. Absoluta e Relativa
 fafe <- function(variavel, nome_var) {
   n_tabela <<- n_tabela + 1
@@ -72,8 +70,6 @@ fafe <- function(variavel, nome_var) {
     bg(i = ~ Var1 == "Total", bg = "#83dea5", part = "body") %>%
     bold(i = ~ Var1 == "Total")
 }
-
-
 
 # Função Tabela de Cruzamentos 
 cruzamentos <- function(Var1, Var2, nomev1, nomev2) {
@@ -119,7 +115,6 @@ cruzamentos <- function(Var1, Var2, nomev1, nomev2) {
     bold(i = ~ Var1 == "Total")
 }
 
-
 # Função tabela de associações (Qui-quadrado + V de Cramér) 
 associacao <- function(Var1, Var2, nomev1, nomev2) {
   n_qq <<- n_qq + 1
@@ -146,7 +141,6 @@ associacao <- function(Var1, Var2, nomev1, nomev2) {
     align(align = "center", part = "all")
 }
 
-
 # Função tabela de associações (Teste de Fisher) 
 fisher_test <- function(Var1, Var2, nomev1, nomev2) {
   n_qq <<- n_qq + 1
@@ -163,7 +157,6 @@ fisher_test <- function(Var1, Var2, nomev1, nomev2) {
     ) %>%
     align(align = "center", part = "all")
 }
-
 
 # Função tabela de Correlação de Pearson 
 correlacao <- function(Var1, Var2, nomev1, nomev2) {
@@ -185,7 +178,6 @@ correlacao <- function(Var1, Var2, nomev1, nomev2) {
     ) %>%
     align(align = "center", part = "all")
 }
-
 
 # Função tabela de Teste de normalidade (Shapiro-Wilk) 
 normalidade <- function(variavel) {
@@ -212,7 +204,6 @@ normalidade <- function(variavel) {
     padding(part = "footer", padding = 1)
 }
 
-
 # Função tabela de Medidas descritivas 
 medidas <- function(colunas) {
   n_tabela <<- n_tabela + 1
@@ -238,7 +229,6 @@ medidas <- function(colunas) {
     align(j = "Coluna", align = "left", part = "all")
 }
 
-
 # Função tabela de Teste de Wilcoxon pareado (pré × pós) 
 wilcox_pareado <- function(pre, pos, nome_variavel) {
   n_qq <<- n_qq + 1
@@ -261,7 +251,6 @@ wilcox_pareado <- function(pre, pos, nome_variavel) {
     align(align = "center", part = "all")
 }
 
-
 # Auxiliar: histograma padrão 
 histograma <- function(variavel, nome_var, bins = 20) {
   n_graf <<- n_graf + 1
@@ -276,4 +265,6 @@ histograma <- function(variavel, nome_var, bins = 20) {
     theme_minimal() +
     theme(plot.title = element_text(size = 12, face = "bold", hjust = 0.5))
 }
+
+# Auxiliar: 
 
