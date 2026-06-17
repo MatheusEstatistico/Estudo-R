@@ -92,7 +92,19 @@ print(maior)
 Um número palíndromo é lido da mesma forma de trás para frente. O maior palíndromo formado pelo produto de dois números de 2 dígitos é 9009 = 91x99. Encontre o maior palíndromo formado pelo produto de dois números de 3 dígitos.
 
 ```{r}
-
+# Versão mais compacta
+maior_palindromo <- 0
+for (i in 999:100) {
+  if (i * 999 < maior_palindromo) break
+  for (j in 999:i) {
+    p <- i * j
+    if (p < maior_palindromo) break
+    if (p == as.numeric(paste(rev(strsplit(as.character(p), "")[[1]]), collapse=""))) {
+      maior_palindromo <- p
+    }
+  }
+}
+print(paste("Maior palíndromo:", maior_palindromo))
 
 ```
 
@@ -103,6 +115,66 @@ Um número palíndromo é lido da mesma forma de trás para frente. O maior pal�
 2520 é o menor número que pode ser dividido por todos os números de 1 a 10 sem deixar resto. Qual é o menor número positivo que é divisível por todos os números de 1 a 20?
 
 ```{r}
+mmc <- function(a, b) {
+  mdc <- function(x, y) ifelse(y == 0, x, mdc(y, x %% y))
+  return(a * b / mdc(a, b))
+}
+
+resultado <- 1
+for (i in 1:20) {
+  resultado <- mmc(resultado, i)
+}
+print(paste("Resultado:", resultado))
+
+```
+
+\
+
+# 6. Diferença de Soma Quadrada 
+
+```{r}
 
 
 ```
+
+\
+
+# 7. 10.001º Número Primo 
+
+```{r}
+
+
+```
+
+\
+
+# 8. O maior produto de uma série 
+
+```{r}
+
+```
+
+\
+
+# 9. Tríade Pitagórica Especial 
+
+```{r}
+
+```
+
+\
+
+# 10. Soma dos números primos 
+
+```{r}
+
+```
+
+
+
+
+
+
+
+
+
