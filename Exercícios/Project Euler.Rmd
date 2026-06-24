@@ -172,7 +172,7 @@ print(paste("Resultado:", resultado))
 
 \
 
-# 11. 
+# 11. Maior produto em uma matriz
 
 ```{r}
 
