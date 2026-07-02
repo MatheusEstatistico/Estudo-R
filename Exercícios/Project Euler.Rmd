@@ -133,7 +133,22 @@ print(paste("Resultado:", resultado))
 # 6. Diferença de Soma Quadrada 
 
 ```{r}
+questao_6 <- function(n) {
+  soma_quadrados <- sum((1:n)^2)
+  quadrado_soma  <- sum(1:n)^2
+  diferenca <- quadrado_soma - soma_quadrados
+  
+  df <- data.frame("soma dos quadrados" = soma_quadrados,
+                   "quadrado da soma" = quadrado_soma,
+                   "diferença" = diferenca)
+  return(df)
+}
 
+resposta <- questao_6(100)
+
+print(paste("Soma dos Quadrados de 1 a 100:", resposta$soma.dos.quadrados))
+print(paste("Quadrado da Soma de 1 a 100:", resposta$quadrado.da.soma))
+print(paste("Diferença:", resposta$diferença))
 
 ```
 
@@ -142,7 +157,29 @@ print(paste("Resultado:", resultado))
 # 7. 10.001º Número Primo 
 
 ```{r}
+num_primo <- function(n) {
+  if (n < 2) return(FALSE)
+  if (n < 4) return(TRUE)
+  if (n %% 2 == 0) return(FALSE)
+  d <- 3
+  while (d * d <= n) {
+    if (n %% d == 0) return(FALSE)
+    d <- d + 2
+  }
+  TRUE
+}
 
+questao_7 <- function() {
+  contador <- 1 # Começa em 1 pra já contar o '2' como número primo
+  num <- 1
+  while (contador < 10001) {
+    num <- num + 2
+    if (num_primo(num)) contador <- contador + 1
+  }
+  num
+}
+
+print(paste("O 10001º número primo é", questao_7()))
 
 ```
 
