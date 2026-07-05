@@ -336,6 +336,27 @@ print(paste("", questao_15()))
 # 16. 
 
 ```{r}
+soma_digitos_potencia2 <- function(expoente) {
+  digitos <- 1
+  for (i in 1:expoente) {
+    digitos <- digitos * 2
+    vai <- 0
+    for (k in seq_along(digitos)) {
+      v <- digitos[k] + vai
+      digitos[k] <- v %% 10
+      vai <- v %/% 10
+    }
+    while (vai > 0) {
+      digitos <- c(digitos, vai %% 10)
+      vai <- vai %/% 10
+    }
+  }
+  sum(digitos)
+}
+
+questao_16 <- function() soma_digitos_potencia2(1000)
+
+print(paste("", questao_16()))
 
 ```
 
@@ -360,6 +381,25 @@ print(paste("", questao_15()))
 # 19. 
 
 ```{r}
+questao_19 <- function() {
+  bissexto <- function(ano) (ano %% 4 == 0 && ano %% 100 != 0) || (ano %% 400 == 0)
+  dias_mes <- function(mes, ano) {
+    d <- c(31,28,31,30,31,30,31,31,30,31,30,31)
+    if (mes == 2 && bissexto(ano)) return(29)
+    d[mes]
+  }
+  dia_semana <- 1
+  total <- 0
+  for (ano in 1900:2000) {
+    for (mes in 1:12) {
+      if (ano >= 1901 && dia_semana == 0) total <- total + 1
+      dia_semana <- (dia_semana + dias_mes(mes, ano)) %% 7
+    }
+  }
+  total
+}
+
+print(paste("", questao_19()))
 
 ```
 
@@ -368,6 +408,25 @@ print(paste("", questao_15()))
 # 20.  
 
 ```{r}
+questao_20 <- function() {
+  digitos <- 1
+  for (fator in 2:100) {
+    digitos <- digitos * fator
+    vai <- 0
+    for (k in seq_along(digitos)) {
+      v <- digitos[k] + vai
+      digitos[k] <- v %% 10
+      vai <- v %/% 10
+    }
+    while (vai > 0) {
+      digitos <- c(digitos, vai %% 10)
+      vai <- vai %/% 10
+    }
+  }
+  sum(digitos)
+}
+
+print(paste("", questao_20()))
 
 ```
 
@@ -375,6 +434,10 @@ print(paste("", questao_15()))
 
 # 21. 
 ```{r}
+
+
+
+print(paste("", questao21()))
 
 ```
 
