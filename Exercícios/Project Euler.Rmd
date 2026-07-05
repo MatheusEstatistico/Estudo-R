@@ -470,6 +470,17 @@ print(paste("", questao21()))
 22. 
 
 ```{r}
+questao_22 <- function(caminho = "names.txt") {
+  bruto <- readLines(caminho, warn = FALSE)
+  bruto <- paste(bruto, collapse = "")
+  nomes <- strsplit(gsub("\"", "", bruto), ",")[[1]]
+  nomes <- sort(nomes)
+  valor <- function(nome) sum(utf8ToInt(nome) - utf8ToInt("A") + 1)
+  scores <- (seq_along(nomes)) * sapply(nomes, valor)
+  format(sum(scores), scientific = FALSE)
+}
+
+print(paste("", questao22()))
 
 ```
 
@@ -478,6 +489,26 @@ print(paste("", questao21()))
 23. 
 
 ```{r}
+questao_23 <- function() {
+  limite <- 28123
+  soma_div <- sapply(1:limite, soma_divisores_proprios)
+  abundantes <- which(soma_div > (1:limite))     # n abundante se d(n) > n
+  
+  # marca todas as somas de dois abundantes <= limite
+  pode <- logical(limite)                        # TRUE = expressavel
+  for (i in seq_along(abundantes)) {
+    a <- abundantes[i]
+    if (2 * a > limite) break
+    for (j in i:length(abundantes)) {
+      s <- a + abundantes[j]
+      if (s > limite) break
+      pode[s] <- TRUE
+    }
+  }
+  format(sum(which(!pode)), scientific = FALSE)
+}
+
+print(paste("", questao23()))
 
 ```
 
@@ -486,6 +517,22 @@ print(paste("", questao21()))
 24. 
 
 ```{r}
+questao_24 <- function() {
+  digitos <- 0:9
+  fat <- factorial(0:9)
+  alvo <- 1000000 - 1        # base 0
+  resultado <- integer(0)
+  restantes <- digitos
+  for (pos in 9:0) {
+    idx <- alvo %/% fat[pos + 1]      # quantos blocos completos cabem
+    resultado <- c(resultado, restantes[idx + 1])
+    restantes <- restantes[-(idx + 1)]
+    alvo <- alvo %% fat[pos + 1]
+  }
+  paste(resultado, collapse = "")
+}
+
+print(paste("", questao24()))
 
 ```
 
@@ -495,6 +542,8 @@ print(paste("", questao21()))
 25. 
 
 ```{r}
+
+print(paste("", questao25()))
 
 ```
 
