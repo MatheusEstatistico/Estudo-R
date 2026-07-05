@@ -247,6 +247,32 @@ print(paste("", questao_10()))
 # 12. 
 
 ```{r}
+num_divisores <- function(n) {
+  total <- 1
+  d <- 2
+  while (d * d <= n) {
+    if (n %% d == 0) {
+      exp <- 0
+      while (n %% d == 0) { n <- n / d; exp <- exp + 1 }
+      total <- total * (exp + 1)
+    }
+    d <- d + 1
+  }
+  if (n > 1) total <- total * 2
+  total
+}
+
+questao_12 <- function() {
+  i <- 1
+  triangular <- 1
+  while (num_divisores(triangular) <= 500) {
+    i <- i + 1
+    triangular <- triangular + i
+  }
+  triangular
+}
+
+print(paste("", questao_12()))
 
 ```
 
@@ -263,6 +289,28 @@ print(paste("", questao_10()))
 # 14. 
 
 ```{r}
+questao_14 <- function() {
+  limite <- 1000000
+  cache <- integer(limite)
+  cache[1] <- 1
+  melhor_inicio <- 1
+  melhor_tam <- 1
+  for (inicio in 2:(limite - 1)) {
+    n <- inicio
+    passos <- 0
+    while (n != 1 && !(n < limite && cache[n] != 0)) {
+      if (n %% 2 == 0) n <- n / 2 else n <- 3 * n + 1
+      passos <- passos + 1
+    }
+    base <- if (n < limite) cache[n] else 1
+    tam <- passos + base
+    if (inicio < limite) cache[inicio] <- tam
+    if (tam > melhor_tam) { melhor_tam <- tam; melhor_inicio <- inicio }
+  }
+  melhor_inicio
+}
+
+print(paste("", questao_14()))
 
 ```
 
@@ -271,6 +319,15 @@ print(paste("", questao_10()))
 # 15. 
 
 ```{r}
+questao_15 <- function() {
+  # calculo exato em inteiro grande via multiplicacao/divisao progressiva
+  # C(40,20) = prod_{k=1..20} (20+k)/k  -> sempre inteiro em cada passo
+  resultado <- 1
+  for (k in 1:20) resultado <- resultado * (20 + k) / k
+  format(resultado, scientific = FALSE)
+}
+
+print(paste("", questao_15()))
 
 ```
 
