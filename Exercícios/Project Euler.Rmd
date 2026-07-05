@@ -433,13 +433,114 @@ print(paste("", questao_20()))
 \
 
 # 21. 
+
 ```{r}
+soma_divisores_proprios <- function(n) {
+  if (n < 2) return(0)
+  total <- 1                      # 1 sempre divide (para n>=2)
+  d <- 2
+  while (d * d <= n) {
+    if (n %% d == 0) {
+      total <- total + d
+      par <- n / d
+      if (par != d) total <- total + par
+    }
+    d <- d + 1
+  }
+  total
+}
 
-
+questao_21 <- function() {
+  limite <- 10000
+  d <- sapply(1:limite, soma_divisores_proprios)
+  total <- 0
+  for (a in 2:limite) {
+    b <- d[a]
+    if (b > 1 && b <= limite && b != a && d[b] == a) total <- total + a
+  }
+  total
+}
 
 print(paste("", questao21()))
 
 ```
+
+\
+
+22. 
+
+```{r}
+
+```
+
+\
+
+23. 
+
+```{r}
+
+```
+
+\
+
+24. 
+
+```{r}
+
+```
+
+
+\
+
+25. 
+
+```{r}
+
+```
+
+\
+
+26. 
+
+```{r}
+
+```
+
+\
+
+27. 
+
+```{r}
+
+```
+
+
+\
+
+28. 
+
+```{r}
+
+```
+
+
+\
+
+29. 
+
+```{r}
+
+```
+
+
+\
+
+30. 
+
+```{r}
+
+```
+
 
 
 
