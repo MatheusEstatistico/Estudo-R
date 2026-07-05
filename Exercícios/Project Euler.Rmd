@@ -542,6 +542,32 @@ print(paste("", questao24()))
 25. 
 
 ```{r}
+questao_25 <- function() {
+  soma_vetores <- function(a, b) {
+    n <- max(length(a), length(b))
+    length(a) <- n; a[is.na(a)] <- 0
+    length(b) <- n; b[is.na(b)] <- 0
+    s <- a + b
+    vai <- 0
+    for (k in seq_len(n)) {
+      v <- s[k] + vai
+      s[k] <- v %% 10
+      vai <- v %/% 10
+    }
+    if (vai > 0) s <- c(s, vai)
+    s
+  }
+  ant <- 1     # F(1)
+  atual <- 1   # F(2)
+  indice <- 2
+  while (length(atual) < 1000) {
+    novo <- soma_vetores(ant, atual)
+    ant <- atual
+    atual <- novo
+    indice <- indice + 1
+  }
+  indice
+}
 
 print(paste("", questao25()))
 
