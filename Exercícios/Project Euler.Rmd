@@ -196,6 +196,16 @@ print(paste("O 10001º número primo é", questao_7()))
 # 9. Tríade Pitagórica Especial 
 
 ```{r}
+questao_9 <- function() {
+  for (a in 1:998) {
+    for (b in (a + 1):(999 - a)) {
+      c <- 1000 - a - b
+      if (a * a + b * b == c * c) return(a * b * c)
+    }
+  }
+}
+
+print(paste("", questao_9()))
 
 ```
 
@@ -204,6 +214,23 @@ print(paste("O 10001º número primo é", questao_7()))
 # 10. Soma dos números primos 
 
 ```{r}
+crivo <- function(limite) {
+  primo <- rep(TRUE, limite)
+  primo[1] <- FALSE
+  i <- 2
+  while (i * i <= limite) {
+    if (primo[i]) primo[seq(i * i, limite, by = i)] <- FALSE
+    i <- i + 1
+  }
+  primo
+}
+
+questao_10 <- function() {
+  primo <- crivo(2000000 - 1)
+  format(sum(which(primo)), scientific = FALSE)
+}
+
+print(paste("", questao_10()))
 
 ```
 
