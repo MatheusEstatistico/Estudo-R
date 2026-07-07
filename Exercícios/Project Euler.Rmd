@@ -649,6 +649,23 @@ print(paste("", questao_28()))
 29. 
 
 ```{r}
+questao_29 <- function() {
+  vistos <- character(0)
+  for (a in 2:100) {
+    r <- a; k <- 1     # acha a menor base r tal que a = r^k
+    for (base in 2:floor(sqrt(a))) {
+      p <- base; e <- 1
+      while (p < a) { p <- p * base; e <- e + 1 }
+      if (p == a) { r <- base; k <- e; break }
+    }
+    for (b in 2:100) {
+      vistos <- c(vistos, paste(r, k * b, sep = "^"))
+    }
+  }
+  length(unique(vistos))
+}
+
+print(paste("", questao_29()))
 
 ```
 
