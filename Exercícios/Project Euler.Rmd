@@ -626,15 +626,23 @@ print(paste("", questao_27()))
 
 ```
 
-
 \
 
 28. 
 
 ```{r}
+questao_28 <- function() {
+  soma <- 1                        # centro
+  for (lado in seq(3, 1001, by = 2)) {
+    # os quatro cantos somam 4*lado^2 - 6*(lado-1)
+    soma <- soma + 4 * lado^2 - 6 * (lado - 1)
+  }
+  soma
+}
+
+print(paste("", questao_28()))
 
 ```
-
 
 \
 
@@ -643,7 +651,6 @@ print(paste("", questao_27()))
 ```{r}
 
 ```
-
 
 \
 
