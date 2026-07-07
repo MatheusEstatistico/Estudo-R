@@ -607,6 +607,22 @@ print(paste("", questao_26()))
 27. 
 
 ```{r}
+questao_27 <- function() {
+  # b precisa ser primo (n=0 => b), entao so testamos b primos positivos
+  bs <- (2:1000)[sapply(2:1000, eh_primo)]
+  melhor_qtd <- 0
+  melhor_prod <- 0
+  for (a in -999:999) {
+    for (b in bs) {
+      n <- 0
+      while (eh_primo(n * n + a * n + b)) n <- n + 1
+      if (n > melhor_qtd) { melhor_qtd <- n; melhor_prod <- a * b }
+    }
+  }
+  melhor_prod
+}
+
+print(paste("", questao_27()))
 
 ```
 
