@@ -461,7 +461,7 @@ questao_21 <- function() {
   total
 }
 
-print(paste("", questao21()))
+print(paste("", questao_21()))
 
 ```
 
@@ -480,7 +480,7 @@ questao_22 <- function(caminho = "names.txt") {
   format(sum(scores), scientific = FALSE)
 }
 
-print(paste("", questao22()))
+print(paste("", questao_22()))
 
 ```
 
@@ -508,7 +508,7 @@ questao_23 <- function() {
   format(sum(which(!pode)), scientific = FALSE)
 }
 
-print(paste("", questao23()))
+print(paste("", questao_23()))
 
 ```
 
@@ -532,7 +532,7 @@ questao_24 <- function() {
   paste(resultado, collapse = "")
 }
 
-print(paste("", questao24()))
+print(paste("", questao_24()))
 
 ```
 
@@ -569,7 +569,7 @@ questao_25 <- function() {
   indice
 }
 
-print(paste("", questao25()))
+print(paste("", questao_25()))
 
 ```
 
@@ -578,6 +578,27 @@ print(paste("", questao25()))
 26. 
 
 ```{r}
+questao_26 <- function() {
+  melhor_d <- 0
+  melhor_periodo <- 0
+  for (d in 2:999) {
+    posicao_resto <- integer(d)   # em que passo cada resto apareceu (0 = nunca)
+    resto <- 1
+    passo <- 0
+    while (resto != 0 && posicao_resto[resto] == 0) {
+      posicao_resto[resto] <- passo
+      resto <- (resto * 10) %% d
+      passo <- passo + 1
+    }
+    if (resto != 0) {
+      periodo <- passo - posicao_resto[resto]
+      if (periodo > melhor_periodo) { melhor_periodo <- periodo; melhor_d <- d }
+    }
+  }
+  melhor_d
+}
+
+print(paste("", questao_26()))
 
 ```
 
