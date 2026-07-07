@@ -674,6 +674,17 @@ print(paste("", questao_29()))
 30. 
 
 ```{r}
+questao_30 <- function() {
+  q <- (0:9)^5
+  total <- 0
+  for (n in 10:354294) {
+    digs <- as.integer(strsplit(as.character(n), "")[[1]])
+    if (sum(q[digs + 1]) == n) total <- total + n
+  }
+  total
+}
+
+print(paste("", questao_30()))
 
 ```
 
