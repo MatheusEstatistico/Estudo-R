@@ -760,6 +760,30 @@ print(paste("", questao_32()))
 34.
 
 ```{r}
+questao_34 <- function() {
+  fatorial <- factorial(0:9)
+  
+  soma_fatorial_digitos <- function(n) {
+    soma <- 0
+    while (n > 0) {
+      digito <- n %% 10
+      soma <- soma + fatorial[digito + 1]
+      n <- n %/% 10
+    }
+    return(soma)
+  }
+  
+  total <- 0
+  # Limite máximo: 9! * 7 = 2540160 (maior que isso ia dar ruim)
+  for (n in 10:2540160) {
+    if (soma_fatorial_digitos(n) == n) {
+      total <- total + n
+    }
+  }
+  return(total)
+}
+
+print(paste("", questao_34()))
 
 ```
 
