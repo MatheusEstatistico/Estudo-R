@@ -6,15 +6,19 @@ output: html_document
 ---
 
 # O que é o Project Euler? 
-
 O Projeto Euler é uma série de problemas desafiadores de matemática/programação que exigem mais do que apenas conhecimentos matemáticos para serem resolvidos. Embora a matemática ajude a encontrar métodos elegantes e eficientes, o uso de um computador e habilidades de programação serão necessários para solucionar a maioria dos problemas.
 
 A motivação para o início e a continuidade do Projeto Euler é proporcionar uma plataforma para que mentes curiosas explorem áreas desconhecidas e aprendam novos conceitos em um contexto divertido e recreativo.
 
 
-## Observações 
+# Porquê R 
+Sendo um estatístico, o R é uma linguagem... 
 
+
+## Observações 
 Essa é a minha versão tanto das resoluções do problemas de 1 a 990, quanto das traduções dos títulos e enunciados.
+*Início*: 01/07/2026
+*Término*: 
 
 
 # 1. Múltiplos de 3 ou 5
