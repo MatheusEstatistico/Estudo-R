@@ -16,7 +16,7 @@ Sendo um estatístico, o R é uma linguagem...
 
 
 ## Observações 
-Essa é a minha versão tanto das resoluções do problemas de 1 a 990, quanto das traduções dos títulos e enunciados.
+Essa é a minha versão tanto das resoluções do problemas de 1 a 99, quanto das traduções dos títulos e enunciados.
 *Início*: 01/07/2026
 *Término*: 
 
